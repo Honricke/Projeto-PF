@@ -1,0 +1,17 @@
+<.header>
+  Senha <%= @senha.id %>
+  <:subtitle>This is a senha record from your database.</:subtitle>
+  <:actions>
+    <.link href={~p"/senhas/#{@senha}/edit"}>
+      <.button>Edit senha</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Nome"><%= @senha.nome %></:item>
+  <:item title="Email"><%= @senha.email %></:item>
+  <:item title="Senha"><%= @senha.senha %></:item>
+</.list>
+
+<.back navigate={~p"/senhas"}>Voltar para senhas</.back>

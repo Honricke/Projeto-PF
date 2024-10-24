@@ -1,0 +1,8 @@
+<.header>
+  Editar Senha <%= @senha.id %>
+  <:subtitle>Aqui você pode editar sua senha, transformando uma senha que era possivelmente fraca em uma senha forte.</:subtitle>
+</.header>
+
+<.senha_form changeset={@changeset} action={~p"/senhas/#{@senha}"} />
+
+<.back navigate={~p"/senhas"}>Back to senhas</.back>

@@ -1,0 +1,8 @@
+<.header>
+  Nova Senha
+  <:subtitle>Salve suas senhas com um identificador, seu email e sua senha, você também tem a opção de "Gerar Senha" que automaticamente te gera uma senha forte.</:subtitle>
+</.header>
+
+<.senha_form changeset={@changeset} action={~p"/senhas"} />
+
+<.back navigate={~p"/senhas"}>Voltar para senhas</.back>

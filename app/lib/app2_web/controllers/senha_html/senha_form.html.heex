@@ -1,0 +1,61 @@
+<style>
+  button{
+    background-color: black;color:#fff;
+    padding-top: 0.65rem;
+    padding-bottom: 0.6rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    border-radius: 0.5rem;
+    font-weight:600;
+    font-size: 0.875rem;
+  }
+</style>
+<.simple_form :let={f} for={@changeset} action={@action}>
+
+  <.input field={f[:nome]} type="text" label="Nome" />
+  <.input field={f[:email]} type="text" label="Email" />
+  <.input field={f[:senha]} type="password" label="Senha" id="senha-input"/>
+
+  <button type="button" onclick="togglePassword()">Mostrar/Esconder Senha</button>
+
+  <!-- Botão que altera a senha -->
+  <button type="button" id="alterar-senha-btn">Gerar Senha</button>
+  
+  <!-- Botão para salvar a senha -->
+  <.button>Salvar Senha</.button> 
+
+  <script>
+    function togglePassword() {
+      const passwordField = document.getElementById("senha-input");
+      
+      // Se o campo de senha for do tipo password, mude para texto; senão, volte para password
+      if (passwordField.type === "password") {
+        passwordField.type = "text";
+      } else {
+        passwordField.type = "password";
+      }
+    }
+
+    function generateRandomPassword(length) {
+      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()';
+      let result = '';
+      
+      for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        result += characters[randomIndex];
+      }
+      
+      return result;
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      const alterarSenhaBtn = document.getElementById("alterar-senha-btn");
+      const senhaInput = document.getElementById("senha-input");
+
+      alterarSenhaBtn.addEventListener("click", function() {
+        // Altera o valor do campo de senha quando o botão "Alterar Senha" for clicado
+        senhaInput.value = generateRandomPassword(25) // Aqui você pode gerar ou definir qualquer valor
+      });
+    });
+  </script>
+</.simple_form>

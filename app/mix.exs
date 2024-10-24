@@ -1,9 +1,9 @@
-defmodule App.MixProject do
+defmodule App2.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :app,
+      app: :app2,
       version: "0.1.0",
       elixir: "~> 1.14",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -18,7 +18,7 @@ defmodule App.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {App.Application, []},
+      mod: {App2.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end
@@ -75,10 +75,10 @@ defmodule App.MixProject do
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
       "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
-      "assets.build": ["tailwind app", "esbuild app"],
+      "assets.build": ["tailwind app2", "esbuild app2"],
       "assets.deploy": [
-        "tailwind app --minify",
-        "esbuild app --minify",
+        "tailwind app2 --minify",
+        "esbuild app2 --minify",
         "phx.digest"
       ]
     ]

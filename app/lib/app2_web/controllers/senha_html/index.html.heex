@@ -1,0 +1,25 @@
+<.header>
+  Gerenciador de Senhas
+  <:actions>
+    <.link href={~p"/senhas/new"}>
+      <.button>Nova Senha</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table id="senhas" rows={@senhas} row_click={&JS.navigate(~p"/senhas/#{&1}")}>
+  <:col :let={senha} label="Nome"><%= senha.nome %></:col>
+  <:col :let={senha} label="Email"><%= senha.email %></:col>
+  <:col :let={senha} label="Senha"><%= senha.senha %></:col>
+  <:action :let={senha}>
+    <div class="sr-only">
+      <.link navigate={~p"/senhas/#{senha}"}>Ver Melhor</.link>
+    </div>
+    <.link navigate={~p"/senhas/#{senha}/edit"}>Editar</.link>
+  </:action>
+  <:action :let={senha}>
+    <.link href={~p"/senhas/#{senha}"} method="delete" data-confirm="Are you sure?">
+      Apagar
+    </.link>
+  </:action>
+</.table>
