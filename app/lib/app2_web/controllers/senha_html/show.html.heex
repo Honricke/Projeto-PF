@@ -1,17 +1,144 @@
-<.header>
-  Senha <%= @senha.id %>
-  <:subtitle>This is a senha record from your database.</:subtitle>
-  <:actions>
-    <.link href={~p"/senhas/#{@senha}/edit"}>
-      <.button>Edit senha</.button>
-    </.link>
-  </:actions>
-</.header>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerenciador de Senhas</title>
+  <style>
+    /* * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    } */
 
-<.list>
-  <:item title="Nome"><%= @senha.nome %></:item>
-  <:item title="Email"><%= @senha.email %></:item>
-  <:item title="Senha"><%= @senha.senha %></:item>
-</.list>
+    main {
+      font-family: Arial, sans-serif;
+      background-color: #f1f5f9;
+      
+      height: 100vh;
+    } 
 
-<.back navigate={~p"/senhas"}>Voltar para senhas</.back>
+    .mx-auto{
+      min-width: 500px;
+      display: flex;
+      justify-content: center;
+      align-items: center;;
+    }
+
+
+    .container {
+      max-width: 420px;
+      width: 100%;
+      padding: 24px;
+      background-color: #ffffff;
+      box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.15);
+      border-radius: 12px;
+      text-align: left;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .container:hover {
+      box-shadow: 0px 12px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      color: #2d3748;
+      text-align: center;
+    }
+
+    .item-details {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .detail {
+      padding: 16px;
+      background-color: #edf2f7;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+
+    .detail:hover {
+      background-color: #e2e8f0;
+    }
+
+    .detail h2 {
+      font-size: 16px;
+      color: #4a5568;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .detail p {
+      font-size: 15px;
+      color: #2d3748;
+      word-wrap: break-word;
+    }
+
+    /* Estilo dos botões */
+    .btn {
+      margin-top: 24px;
+      padding: 10px 20px;
+      background-color: #4a90e2;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #357ab7;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Detalhes da Senha</h1>
+    <div class="item-details">
+      <div class="detail">
+        <h2>Descrição</h2>
+        <p><strong><%= @senha.nome %></strong></p>
+      </div>
+      <div class="detail">
+        <h2>Email</h2>
+        <p><strong><%= @senha.email %></strong></p>
+      </div>
+      <div class="detail">
+        <h2>Senha</h2>
+        <strong><p id="password"><%= @senha.senha %></p></strong>
+      </div>
+    </div>
+    <div>
+      <button class="toggle-password btn" onclick="togglePassword()">Mostrar Senha</button>
+      <.link href={~p"/senhas/#{@senha}/edit"}>
+        <.button class="btn">Editar Senha</.button>
+      </.link>
+    </div>
+    <.back navigate={~p"/senhas"}>Voltar para senhas</.back>
+  </div>
+  <script>
+    const senha = password.innerText
+    function togglePassword() {
+      const password = document.getElementById("password");
+      const toggleBtn = document.querySelector(".toggle-password");
+
+      if (toggleBtn.innerText === "Mostrar Senha") {
+        password.innerText = senha; 
+        toggleBtn.innerText = "Ocultar Senha";
+      } else {
+        password.innerText = "********";
+        toggleBtn.innerText = "Mostrar Senha";
+      }
+    }
+
+    // Inicialmente, ocultar a senha
+    document.getElementById("password").innerText = "********";
+  </script>
+</body>
+

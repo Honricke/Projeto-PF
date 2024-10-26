@@ -1,14 +1,21 @@
 <style>
-  button{
-    background-color: black;color:#fff;
-    padding-top: 0.65rem;
-    padding-bottom: 0.6rem;
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
-    border-radius: 0.5rem;
-    font-weight:600;
-    font-size: 0.875rem;
-  }
+  .btn {
+      margin-top: 24px;
+      padding: 10px 20px;
+      background-color: #4a90e2;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s ease;
+    }
+    .flex{
+      display: flex;
+      gap: 15px;
+    }
 </style>
 <.simple_form :let={f} for={@changeset} action={@action}>
 
@@ -16,13 +23,16 @@
   <.input field={f[:email]} type="text" label="Email" />
   <.input field={f[:senha]} type="password" label="Senha" id="senha-input"/>
 
-  <button type="button" onclick="togglePassword()">Mostrar/Esconder Senha</button>
 
-  <!-- Botão que altera a senha -->
-  <button type="button" id="alterar-senha-btn">Gerar Senha</button>
+  <div class="flex">
+    <button type="button" onclick="togglePassword()" class="btn">Mostrar/Esconder Senha</button>
+  
+    <!-- Botão que altera a senha -->
+    <button type="button" id="alterar-senha-btn" class="btn">Gerar Senha</button>
+  </div>
   
   <!-- Botão para salvar a senha -->
-  <.button>Salvar Senha</.button> 
+  <.button class="btn">Salvar Senha</.button> 
 
   <script>
     function togglePassword() {
